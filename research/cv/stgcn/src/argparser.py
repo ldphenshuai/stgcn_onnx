@@ -23,25 +23,27 @@ def arg_parser():
     parser = argparse.ArgumentParser('stgcn parameters')
 
     # The way of training
-    parser.add_argument('--device_target', type=str, default='Ascend', choices=['Ascend', 'GPU', 'CPU'],
+    parser.add_argument('--device_target', type=str, default='GPU', choices=['Ascend', 'GPU', 'CPU'],
                         help='device where the code will be implemented (default: Ascend)')
     parser.add_argument('--epochs', type=int, default=500, help='Epochs to train model')
     parser.add_argument('--run_modelarts', type=ast.literal_eval, default=False, help='Run on modelarts')
     parser.add_argument('--run_distribute', type=ast.literal_eval, default=False, help='Run distribute')
-    parser.add_argument('--device_id', type=int, default=0, help='Device id, default is 0.')
     parser.add_argument('--save_checkpoint', type=bool, default=True, help='Whether to save checkpoint')
 
     # Path to data and checkpoints
     parser.add_argument('--data_url', type=str, required=True, help='Dataset directory.')
+
     parser.add_argument('--train_url', type=str, required=True, help='Save checkpoint directory.')
     parser.add_argument('--data_path', type=str, default="vel.csv", help='Dataset file of vel.')
     parser.add_argument('--wam_path', type=str, default="adj_mat.csv", help='Dataset file of warm.')
     parser.add_argument('--label_dir', type=str, default='', help='label data directory.')
-    parser.add_argument('--ckpt_url', type=str, default="", help='Path to saved checkpoint.')
+    parser.add_argument('--ckpt_url', type=str, default="./checkpoint", help='Path to saved checkpoint.')
+    parser.add_argument('--ckpt_file', type=str, default="", help='ckpt_file name.')
     parser.add_argument("--file_name", type=str, default="stgcn", help="output file name.")
     parser.add_argument("--file_format", type=str, choices=["AIR", "ONNX", "MINDIR"], default="MINDIR",
                         help="file format to export")
     parser.add_argument('--result_dir', type=str, default="./result_Files", help='infer result dir.')
+    parser.add_argument('--onnx_path', type=str, default=None, help='ONNX file path')
 
     # Parameters for training
     parser.add_argument("--batch_size", type=int, default=1, help="batch size")

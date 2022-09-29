@@ -66,11 +66,11 @@ class CausalConv2d(nn.Cell):
         self.conv2d = nn.Conv2d(in_channels, out_channels, kernel_size, stride=stride,
                                 padding=0, pad_mode='valid', dilation=dilation, group=groups,
                                 has_bias=bias, weight_init='he_uniform')
-        self.pad = ops.Pad(((0, 0), (0, 0), (self.left_padding[0], 0), (self.left_padding[1], 0)))
+        self.paddings = ((0, 0), (0, 0), (self.left_padding[0], 0), (self.left_padding[1], 0))
 
     def construct(self, x):
         if self.__padding != 0:
-            x = self.pad(x)
+            x = ops.pad(x, self.paddings)
         result = self.conv2d(x)
         return result
 

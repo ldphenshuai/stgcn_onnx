@@ -103,7 +103,6 @@ def run_eval(args, cfg, blocks):
         data_dir = local_data_url + '/'
         local_ckpt_url = local_ckpt_url + '/'
     else:
-        context.set_context(device_id=args.device_id)
         data_dir = args.data_url + '/'
         local_ckpt_url = args.ckpt_url
 

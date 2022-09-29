@@ -116,7 +116,7 @@ elif args.graph_conv_type == "gcnconv":
 else:
     raise ValueError("Unsupported graph_conv_type.")
 
-context.set_context(mode=context.GRAPH_MODE, device_target=args.device_target, save_graphs=False)
+context.set_context(mode=context.GRAPH_MODE, device_target=args.device_target, save_graphs=True)
 
 if ((cfg.Kt - 1) * 2 * cfg.stblock_num > cfg.n_his) or ((cfg.Kt - 1) * 2 * cfg.stblock_num <= 0):
     raise ValueError(f'ERROR: {cfg.Kt} and {cfg.stblock_num} are unacceptable.')

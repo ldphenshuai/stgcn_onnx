@@ -28,7 +28,7 @@ from src.model import models
 
 args = arg_parser()
 
-context.set_context(mode=context.GRAPH_MODE, device_target=args.device_target, device_id=args.device_id)
+context.set_context(mode=context.GRAPH_MODE, device_target=args.device_target)
 
 if args.graph_conv_type == "chebconv":
     if args.n_pred == 9:
@@ -78,10 +78,10 @@ cfg.n_pred = cfg.n_pred
 time_pred = cfg.n_pred * cfg.time_intvl
 time_pred_str = str(time_pred) + '_mins'
 
-context.set_context(device_id=args.device_id)
+
 device_num = 1
 cfg.batch_size = cfg.batch_size*int(8/device_num)
-device_id = args.device_id
+
 data_dir = args.data_url + '/'
 
 adj_mat = dataloader.load_weighted_adjacency_matrix(data_dir+args.wam_path)
